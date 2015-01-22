@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.google.gson.Gson;
+
 import sr.api.business.service.impl.AppUserDetailsService;
 import sr.api.persistence.domain.User;
 
@@ -31,6 +33,7 @@ public class LoginPage extends HandlerInterceptorAdapter {
             String email = auth.getName();
             user = appUserDetailsService.getUserDetail(email);
             session.setAttribute("user", user);
+            System.out.println(new Gson().toJson(user));
         }
 
         return super.preHandle(request, response, handler);

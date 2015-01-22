@@ -10,7 +10,7 @@ function BooksController($scope, $http) {
 
     $scope.lastAction = '';
 
-    $scope.url = "/library-crud/protected/books/";
+    $scope.url = "/protected/books/";
 
     $scope.errorOnSubmit = false;
     $scope.errorIllegalAccess = false;
