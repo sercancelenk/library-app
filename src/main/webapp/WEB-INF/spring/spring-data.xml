@@ -29,13 +29,12 @@
 	<mongo:repositories base-package="sr.api.persistence.dao"/>
 	
 	<!-- Mongo ayarlanir -->
-	<mongo:mongo host="${MONGO_HOST}" port="${MONGO_PORT}" write-concern="FSYNC_SAFE"/>
+	<mongo:mongo host="c634.candidate.15.mongolayer.com" port="10636" write-concern="FSYNC_SAFE"/>
 	
 	<!-- Mongodb islemleri icin template ayarlanir (Spring ile)-->
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"
-		factory-bean="mongoFactory">
+		c:mongo-ref="mongo" c:databaseName="app33426261">
 	</bean>
-	<mongo:db-factory id="mongoFactory" host="${MONGO_HOST}" port="${MONGO_PORT}" dbname="${MONGO_DB}" username="libuser" password="libuser123" />
 	
 
 </beans>
