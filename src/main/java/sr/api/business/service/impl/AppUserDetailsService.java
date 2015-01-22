@@ -65,6 +65,7 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 	
 	 public User getUserDetail(String username) {
+		 System.out.println("**************** geet user detail");
 	    	User user = iUserDao.findByUserName(username);
 	        return user;
 	 }

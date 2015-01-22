@@ -26,14 +26,14 @@ public class LoginPage extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
-
+		System.out.println("**************** pre handleeeee");
         User user = (User) session.getAttribute("user");
         if(user == null){
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String email = auth.getName();
             user = appUserDetailsService.getUserDetail(email);
             session.setAttribute("user", user);
-            System.out.println(new Gson().toJson(user));
+            
         }
 
         return super.preHandle(request, response, handler);
