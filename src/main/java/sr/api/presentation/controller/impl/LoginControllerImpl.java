@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 import sr.api.presentation.controller.ILoginController;
 
 @Component
-public class LoginController implements ILoginController {
+public class LoginControllerImpl implements ILoginController {
 
 	@Override
 	public ModelAndView getLoginPage() {

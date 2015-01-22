@@ -49,27 +49,31 @@ public class BookControllerImpl implements IBookController {
 	@Override
 	public ResponseEntity<?> update(@PathVariable("id") String bookId,
 			@RequestBody Book book) {
-		System.out.println("*** bookID: " + bookId);
-		System.out.println("*** Book : "  + new Gson().toJson(book));
-		
+		if(bookId == null || "".equals(bookId)){
+			return new ResponseEntity<String>("Book id can not be null !!!", HttpStatus.OK);
+		}
+		if(book == null || book.getId() == null || "".equals(bookId)){
+			return new ResponseEntity<String>("Book info can not be null !!!", HttpStatus.OK);
+		}
 		if (!String.valueOf(book.getId()).equals(bookId)) {
             return new ResponseEntity<String>("Bad Request !!!", HttpStatus.BAD_REQUEST);
         }
-		
 		iBookService.updateBook(book);
 		BooksVO booksVO = iBookService.getAllBooks(0, maxResults);
 		return new ResponseEntity<BooksVO>(booksVO, HttpStatus.OK);
 	}
 
 	@Override
-	public ResponseEntity<?> delete(@PathVariable("bookId") int bookId) {
+	public ResponseEntity<?> delete(@PathVariable("id") String bookId) {
 		try {
-
+			if(bookId == null || "".equals(bookId))
+				return new ResponseEntity<String>("Book id can not be null !!!", HttpStatus.OK);
+			
 			iBookService.deleteBook(String.valueOf(bookId));
 		} catch (org.springframework.security.access.AccessDeniedException e) {
 			return new ResponseEntity<Object>(HttpStatus.FORBIDDEN);
 		}
-		BooksVO booksVO = iBookService.getAllBooks(5, maxResults);
+		BooksVO booksVO = iBookService.getAllBooks(0, maxResults);
 		return new ResponseEntity<BooksVO>(booksVO, HttpStatus.OK);
 	}
 

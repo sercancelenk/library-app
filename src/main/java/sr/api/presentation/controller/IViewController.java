@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 @RequestMapping("/")
 public interface IViewController {
-	
 	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
     public String redirectToHome();
 }

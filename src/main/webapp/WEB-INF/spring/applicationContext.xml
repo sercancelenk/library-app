@@ -8,6 +8,7 @@
 		
 	<context:component-scan base-package="sr.api"/>
 	
+	
 	<!-- Spring MVC -->
 	<import resource="spring-mvc.xml"/>
 	

@@ -3,17 +3,13 @@ package sr.api.business.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import sr.api.persistence.dao.IUserDao;
@@ -45,6 +41,11 @@ public class AppUserDetailsService implements UserDetailsService {
 		
 		User authUser = getUserDetail(user);
 		
+		if(authUser == null){
+			logger.info("Auth user is null. Exception is throwing..");
+			throw new UsernameNotFoundException("Username not found");
+		}
+		
 		appUserDetails = new org.springframework.security.core.userdetails.User
 				(user, authUser.getPass(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, getAuthorities(authUser.getRole()));
 		
@@ -52,6 +53,7 @@ public class AppUserDetailsService implements UserDetailsService {
 	}
 	
 	public List<GrantedAuthority> getAuthorities(Integer role) {
+		
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
         if (role.intValue() == 1) {
             authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

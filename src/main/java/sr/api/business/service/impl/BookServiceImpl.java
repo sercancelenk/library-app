@@ -16,6 +16,10 @@ import sr.api.persistence.dao.IBookDao;
 import sr.api.persistence.domain.Book;
 import sr.api.presentation.vo.BooksVO;
 
+/**
+ * @author sercan
+ *
+ */
 @Service("iBookService")
 @Transactional
 public class BookServiceImpl implements IBookService {

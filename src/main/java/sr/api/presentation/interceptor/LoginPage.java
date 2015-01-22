@@ -13,6 +13,10 @@ import sr.api.business.service.impl.AppUserDetailsService;
 import sr.api.persistence.domain.User;
 
 
+/**
+ * @author sercan
+ *
+ */
 public class LoginPage extends HandlerInterceptorAdapter {
 	@Autowired AppUserDetailsService appUserDetailsService;
 

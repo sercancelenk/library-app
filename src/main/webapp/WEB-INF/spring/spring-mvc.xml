@@ -7,7 +7,7 @@
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler/>
 	
-	<!-- Login Interceptor -->
+	<!-- Protected alanlar icin yetki kontrolu  -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/protected/**"/>
@@ -24,7 +24,7 @@
 	</mvc:interceptors>
 	
 	
-	<!-- i18n -->
+	<!-- i18n message resource -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="WEB-INF/i18n"/>
         <property name="defaultEncoding" value="UTF-8"/>

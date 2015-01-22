@@ -1,8 +1,11 @@
 package sr.api.business.service;
 
-import org.springframework.stereotype.Service;
 
 
+/**
+ * @author sercan
+ *
+ */
 public interface IUserService {
 
 }

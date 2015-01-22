@@ -39,8 +39,8 @@ public interface IBookController {
 			@PathVariable("id") String bookId,
 			@RequestBody Book book);
 
-	@RequestMapping(value = "/{bId}", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity<?> delete(
-			@PathVariable("bookId") int bookId);
+			@PathVariable("id") String bookId);
 	
 }
