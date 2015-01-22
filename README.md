@@ -1,2 +1,3 @@
 # library-app
-# Demo application : 
+> demo application for practise
+- application published on {}
