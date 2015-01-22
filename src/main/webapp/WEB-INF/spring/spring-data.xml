@@ -26,7 +26,7 @@
 	
 	
 	<!-- Mongo db repository ozelligi aktif edilir -->
-	<!-- <mongo:repositories base-package="sr.api.persistence.dao"/> -->
+	<mongo:repositories base-package="sr.api.persistence.dao"/>
 	
 	<!-- Mongo ayarlanir -->
 	<!-- <mongo:mongo host="${MONGO_HOST}" port="${MONGO_PORT}"/> -->
@@ -50,7 +50,6 @@
     <bean class="com.mongodb.MongoURI" id="mongoURI">
         <constructor-arg value="${MONGOHQ_URL}"  />
     </bean>
-
     <bean class="com.mongodb.Mongo" id="mongo">
         <constructor-arg ref="mongoURI" />
     </bean>
