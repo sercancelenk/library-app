@@ -29,11 +29,11 @@
 	<mongo:repositories base-package="sr.api.persistence.dao"/>
 	
 	<!-- Mongo ayarlanir -->
-	<mongo:mongo host="${config.mongodb.host.name}" port="${config.mongodb.host.port}"/>
+	<mongo:mongo host="${MONGO_HOST}" port="${MONGO_PORT}"/>
 	
 	<!-- Mongodb islemleri icin template ayarlanir (Spring ile)-->
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"
-		c:mongo-ref="mongo" c:databaseName="${config.mongodb.database.name}">
+		c:mongo-ref="mongo" c:databaseName="${MONGO_DB}">
 	</bean>
 	
 
