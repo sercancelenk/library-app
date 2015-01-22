@@ -26,17 +26,34 @@
 	
 	
 	<!-- Mongo db repository ozelligi aktif edilir -->
-	<mongo:repositories base-package="sr.api.persistence.dao"/>
+	<!-- <mongo:repositories base-package="sr.api.persistence.dao"/> -->
 	
 	<!-- Mongo ayarlanir -->
-	<mongo:mongo host="${MONGO_HOST}" port="${MONGO_PORT}"/>
+	<!-- <mongo:mongo host="${MONGO_HOST}" port="${MONGO_PORT}"/> -->
 	
 	<!-- Mongodb islemleri icin template ayarlanir (Spring ile)-->
-	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"
+	<!-- <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"
 		c:mongo-ref="mongo" c:databaseName="${MONGO_DB}">
-	</bean>
+	</bean> -->
 	
-	
+	<bean id="mongoTemplate" class="org.springframework.data.document.mongodb.MongoTemplate">
+        <constructor-arg name="mongo" ref="mongo"/>
+        <constructor-arg name="databaseName" value="${MONGO_DB}"/>
+        <constructor-arg name="userCredentials" ref="mongoCredentials"/>
+    </bean>
+
+    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
+        <property name="username" value="libuser" />
+        <property name="password" value="libuser123" />
+    </bean>
+
+    <bean class="com.mongodb.MongoURI" id="mongoURI">
+        <constructor-arg value="${MONGOHQ_URL}"  />
+    </bean>
+
+    <bean class="com.mongodb.Mongo" id="mongo">
+        <constructor-arg ref="mongoURI" />
+    </bean>
 	
 
 </beans>
