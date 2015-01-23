@@ -5,6 +5,7 @@
 <div class="masthead">
 	<h3 class="muted">
 		<spring:message code='header.message' />
+		<span class="pull-right" style="font-size:12px"><span class="text text-info">[By SercanCELENK - Version:1.0]</span></span>
 	</h3>
 
 	<div class="navbar navbar-inverse">
