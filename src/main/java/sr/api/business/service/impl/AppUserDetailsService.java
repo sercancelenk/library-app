@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+
 import sr.api.persistence.dao.IUserDao;
 import sr.api.persistence.domain.User;
 
@@ -23,51 +25,60 @@ import sr.api.persistence.domain.User;
 @Service("appUserDetailsService")
 public class AppUserDetailsService implements UserDetailsService {
 
-	private static final Logger logger = Logger.getLogger(AppUserDetailsService.class);
-	
-	@Autowired IUserDao iUserDao;
-	
+	private static final Logger logger = Logger
+			.getLogger(AppUserDetailsService.class);
+
+	@Autowired
+	IUserDao iUserDao;
+
 	private org.springframework.security.core.userdetails.User appUserDetails;
-	
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String user)
 			throws UsernameNotFoundException {
-		
+
 		boolean enabled = true;
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
-		
+
 		User authUser = getUserDetail(user);
-		
-		if(authUser == null){
+
+		if (authUser == null) {
 			logger.info("Auth user is null. Exception is throwing..");
 			throw new UsernameNotFoundException("Username not found");
 		}
-		
-		appUserDetails = new org.springframework.security.core.userdetails.User
-				(user, authUser.getPass(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, getAuthorities(authUser.getRole()));
-		
+
+		appUserDetails = new org.springframework.security.core.userdetails.User(
+				user, authUser.getPass(), enabled, accountNonExpired,
+				credentialsNonExpired, accountNonLocked,
+				getAuthorities(authUser.getRole()));
+
 		return appUserDetails;
 	}
-	
-	public List<GrantedAuthority> getAuthorities(Integer role) {
-		
-        List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
-        if (role.intValue() == 1) {
-            authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-        } else if (role.intValue() == 2) {
-            authList.add(new SimpleGrantedAuthority("ROLE_USER"));
-        }
-        return authList;
-    }
-	
-	 public User getUserDetail(String username) {
-		 System.out.println("**************** geet user detail");
-	    	User user = iUserDao.findByUserName(username);
-	        return user;
-	 }
-	
+	public List<GrantedAuthority> getAuthorities(Integer role) {
+
+		List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+		if (role.intValue() == 1) {
+			authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+		} else if (role.intValue() == 2) {
+			authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
+		return authList;
+	}
+
+	public User getUserDetail(String username) {
+		User user = null;
+		try {
+			System.out.println("********* USERNAME : " + username);
+			user = iUserDao.findByUserName(username);
+			System.out.println("********* USER : " + new Gson().toJson(user));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return user;
+	}
+
 }
