@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
-
 import sr.api.persistence.dao.IUserDao;
 import sr.api.persistence.domain.User;
 
@@ -72,11 +70,9 @@ public class AppUserDetailsService implements UserDetailsService {
 	public User getUserDetail(String username) {
 		User user = null;
 		try {
-			System.out.println("********* USERNAME : " + username);
 			user = iUserDao.findByUserName(username);
-			System.out.println("********* USER : " + new Gson().toJson(user));
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(ex.getMessage());
 		}
 		return user;
 	}

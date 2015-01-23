@@ -10,7 +10,7 @@ function BooksController($scope, $http) {
 
     $scope.lastAction = '';
 
-    $scope.url = "/protected/books/";
+    $scope.url = "/library-crud/protected/books/";//FIXME:
 
     $scope.errorOnSubmit = false;
     $scope.errorIllegalAccess = false;
@@ -114,9 +114,13 @@ function BooksController($scope, $http) {
 
     $scope.resetBook = function(){
         $scope.book = {};
+        $scope.loadCaptcha();
     };
 
     $scope.createBook = function (newBookForm) {
+    	//captcha is cleaning
+    	$scope.captchaOrg="";
+    	$scope.captchaAgain="";
     	
         if (!newBookForm.$valid) {
             $scope.displayValidationError = true;
@@ -201,6 +205,18 @@ function BooksController($scope, $http) {
             });
     };
 
+    $scope.captchaOrg = "";
+    $scope.captchaAgain = "";
+    $scope.words = ["Ankara","Istanbul","Izmir","Bursa"];
+    $scope.loadCaptcha = function(){
+    	var tmpNum = Math.floor((Math.random() * 3));
+    	console.log("Captcha : " + tmpNum);
+    	$scope.captchaOrg = $scope.words[tmpNum];
+    	console.log("Captcha : " + $scope.captchaOrg);
+    }
+    
+    
+    
     
     $scope.getBookList();
 };

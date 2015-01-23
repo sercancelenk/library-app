@@ -8,16 +8,18 @@
 <div class="row-fluid" ng-controller="BooksController">
 	<h4>
 		<p class="text pull-left">
-			<span class="text text-info"><spring:message code='books.header' /></span>
+			<span class="text text-info"><spring:message
+					code='books.header' /></span>
 		</p>
 		<p class="text pull-right">
 
-				<span class="text text-info"><spring:message code="message.total.records.found" />:&nbsp;{{page.totalBooks}}</span>
+			<span class="text text-info"><spring:message
+					code="message.total.records.found" />:&nbsp;{{page.totalBooks}}</span>
 
-			</p>
+		</p>
 	</h4>
 
-	<br/>
+	<br />
 
 
 	<div>
@@ -138,7 +140,7 @@
 
 
 
-			<div style="float:left;">
+			<div style="float: left;">
 
 				<button href="#" class="btn btn-info"
 					ng-class="{'btn-info': page.currentPage != 0, 'disabled': page.currentPage == 0}"
@@ -181,12 +183,12 @@
 
 		<div
 			ng-class="{'text-center': displayCreateBookButton == true, 'none': displayCreateBookButton == false}"
-			style="float:right;padding-top:0px">
+			style="float: right; padding-top: 0px">
 
 			<a href="#addBooksModal" role="button" ng-click="resetBook();"
 				title="<spring:message code='create'/>&nbsp;<spring:message code='book'/>"
-				class="btn btn-info" data-toggle="modal"> <i
-				class="icon-plus"></i> &nbsp;&nbsp;<spring:message code="create" />&nbsp;<spring:message
+				class="btn btn-info" data-toggle="modal"> <i class="icon-plus"></i>
+				&nbsp;&nbsp;<spring:message code="create" />&nbsp;<spring:message
 					code="book" />
 
 			</a>

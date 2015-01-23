@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-
 import sr.api.business.service.IBookService;
 import sr.api.persistence.domain.Book;
 import sr.api.presentation.controller.IBookController;
