@@ -116,15 +116,16 @@ function BooksController($scope, $http) {
     };
 
     $scope.createBook = function (newBookForm) {
-    	//captcha is cleaning
-    	$scope.captchaOrg="";
-    	$scope.captchaAgain="";
+    	
     	
         if (!newBookForm.$valid) {
             $scope.displayValidationError = true;
             return;
         }
-
+        
+      //captcha is cleaning
+    	$scope.captchaOrg="";
+    	$scope.captchaAgain="";
         $scope.lastAction = 'create';
 
         var url = $scope.url;
