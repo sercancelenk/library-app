@@ -28,7 +28,7 @@
 	<mongo:repositories base-package="sr.api.persistence.dao" />
 
 	<!-- Mongo ayarlanir -->
-	<mongo:mongo host="c634.candidate.15.mongolayer.com" port="10636"
+	<mongo:mongo host="${MONGO_HOST}" port="${MONGO_PORT}"
 		write-concern="FSYNC_SAFE" />
 
 	<!-- Mongodb islemleri icin template ayarlanir (Spring ile) -->
@@ -36,7 +36,7 @@
 		c:mongo-ref="mongo" c:databaseName="app33426261">
 	</bean> -->
 
-	<mongo:db-factory  dbname="app33426261" username="libuser" password="libuser123" mongo-ref="mongo" />
+	<mongo:db-factory  dbname="${MONGO_DB}" username="${MONGO_USER}" password="${MONGO_P}" mongo-ref="mongo" />
 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
