@@ -8,12 +8,11 @@
 <div class="row-fluid" ng-controller="BooksController">
 	<h4>
 		<p class="text pull-left">
-			<spring:message code='books.header' />
-
+			<span class="text text-info"><spring:message code='books.header' /></span>
 		</p>
 		<p class="text pull-right">
 
-				<span><spring:message code="message.total.records.found" />:&nbsp;{{page.totalBooks}}</span>
+				<span class="text text-info"><spring:message code="message.total.records.found" />:&nbsp;{{page.totalBooks}}</span>
 
 			</p>
 	</h4>
@@ -64,14 +63,6 @@
 
 		<div
 			ng-class="{'alert alert-info': state == 'noresult', 'none': state != 'noresult'}">
-
-			<h4>
-				<i class="icon-info-sign"></i>
-				<spring:message code="books.emptyData" />
-			</h4>
-			<br />
-
-
 
 			<p>
 				<spring:message code="books.emptyData.text" />
