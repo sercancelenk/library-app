@@ -10,7 +10,7 @@ function BooksController($scope, $http) {
 
     $scope.lastAction = '';
 
-    $scope.url = "/library-crud/protected/books/";//FIXME:
+    $scope.url = "/protected/books/";
 
     $scope.errorOnSubmit = false;
     $scope.errorIllegalAccess = false;
@@ -44,8 +44,6 @@ function BooksController($scope, $http) {
             $scope.state = 'list';
             $scope.page = {source: data.bookList, currentPage: $scope.pageToGet, pagesCount: data.pagesCount, totalBooks : data.totalBooks};
             
-            console.log("**** " + $scope.page.pagesCount);
-            console.log("**** " + $scope.page.currentPage);
             if($scope.page.pagesCount <= $scope.page.currentPage){
                 $scope.pageToGet = $scope.page.pagesCount - 1;
                 $scope.page.currentPage = $scope.page.pagesCount - 1;
@@ -77,7 +75,7 @@ function BooksController($scope, $http) {
     }
 
     $scope.finishAjaxCallOnSuccess = function (data, modalId, isPagination) {
-    	console.log(data);
+    	
     	$scope.populateTable(data);
         $("#loadingModal").modal('hide');
         if(!isPagination){
@@ -135,7 +133,7 @@ function BooksController($scope, $http) {
 
         $scope.startDialogAjaxRequest();
         
-        console.log("**** bookkkk : " + JSON.stringify($scope.book));
+        
 
         $http.post(url, $.param($scope.book), config)
             .success(function (data) {
@@ -160,7 +158,7 @@ function BooksController($scope, $http) {
         $scope.lastAction = 'update';
 
         var url = $scope.url + "u/" + $scope.book.id;
-        console.log("*** update url: " + url);
+        
 
         $scope.startDialogAjaxRequest();
         
@@ -172,14 +170,11 @@ function BooksController($scope, $http) {
         var config = {headers: {'Content-Type': 'application/json; charset=UTF-8'}};
         $http.post(url, $scope.bk, config)
             .success(function (data) {
-            	console.log("success metoda girdi");
+            	
                 $scope.finishAjaxCallOnSuccess(data, "#updateBooksModal", false);
             })
             .error(function(data, status, headers, config) {
-            	console.log("***** data: " + JSON.stringify(data));
-            	console.log("***** headers: " + JSON.stringify(headers));
-            	console.log("***** config: " + JSON.stringify(config));
-                $scope.handleErrorInDialogs(status);
+            	$scope.handleErrorInDialogs(status);
             });
     };
 
@@ -210,9 +205,8 @@ function BooksController($scope, $http) {
     $scope.words = ["Ankara","Istanbul","Izmir","Bursa"];
     $scope.loadCaptcha = function(){
     	var tmpNum = Math.floor((Math.random() * 3));
-    	console.log("Captcha : " + tmpNum);
     	$scope.captchaOrg = $scope.words[tmpNum];
-    	console.log("Captcha : " + $scope.captchaOrg);
+    	
     }
     
     
